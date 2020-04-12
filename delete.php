@@ -1,7 +1,7 @@
 <?php
  //include connection file
  include "connection2.php";
- $sqll1="DROP PROCEDURE deleteImage";
+ $sqll1="DROP PROCEDURE deleteimage";
 $sqll2="CREATE PROCEDURE images.deleteimage
 (
 in sD int
