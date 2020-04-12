@@ -97,7 +97,23 @@
 <?php
        //include connection file
     include 'connection2.php';
-        $sql1="CALL getimage('{$_GET['id']}',@title,@image);";
+    $sqll1="DROP PROCEDURE getimage";
+$sqll2="CREATE PROCEDURE images.getimage
+(
+in intid int,
+out sn varchar(30),
+out sm varchar(30))
+begin
+select title,image
+into sn,sm
+from images
+where id=intid;
+end;";
+$c1=$con->prepare($sqll1);
+$c2=$con->prepare($sqll2);
+$c1->execute();
+$c2->execute();
+       $sql1="CALL getimage('{$_GET['id']}',@title,@image);";
        $sql2="SELECT @title,@image;";
 $q=$con->query($sql1);
 $q=$con->query($sql2);
